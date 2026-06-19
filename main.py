@@ -17,14 +17,17 @@ with open("birthdays.csv", "r") as file:
 
 if (today_month, today_day) in birthdays_dict:
     birthday_person = birthdays_dict[(today_month, today_day)]
-    file_path = f"./letter_templates/letter_{random.randint(1, 3)}.txt"
-    with open(file_path) as file:
-        contents = file.read()
-        birthday_wish = contents.replace("[NAME]", birthday_person["name"])
+    if (today_month, today_day) == (5, 7):
+        file_path = "./letter_templates/letter_4.txt"
+    else:
+        file_path = f"./letter_templates/letter_{random.randint(1, 3)}.txt"
+        with open(file_path) as file:
+            contents = file.read()
+            birthday_wish = contents.replace("[NAME]", birthday_person["name"])
 
-    with smtplib.SMTP("smtp.gmail.com", 587) as connection:
-        connection.starttls()
-        connection.login(user=my_email, password=password)
-        connection.sendmail(from_addr=my_email,
-                            to_addrs=birthday_person["email"],
-                            msg=f"Subject: HAPPY BIRTHDAY!\n\n{birthday_wish}")
+        with smtplib.SMTP("smtp.gmail.com", 587) as connection:
+            connection.starttls()
+            connection.login(user=my_email, password=password)
+            connection.sendmail(from_addr=my_email,
+                                to_addrs=birthday_person["email"],
+                                msg=f"Subject: HAPPY BIRTHDAY!\n\n{birthday_wish}")
