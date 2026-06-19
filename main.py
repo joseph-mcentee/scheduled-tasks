@@ -5,7 +5,7 @@ import smtplib
 import os
 
 my_email = os.environ.get("MY_EMAIL")
-password = os.environ.get("PASSWORD")
+password = os.environ.get("MY_PASSWORD")
 
 today = dt.datetime.now()
 today_month = today.month
