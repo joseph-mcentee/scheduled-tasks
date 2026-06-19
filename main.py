@@ -4,8 +4,8 @@ import pandas
 import smtplib
 import os
 
-my_email = os.environ.get("my_email")
-password = os.environ.get("password")
+my_email = os.environ.get("MY_EMAIL")
+password = os.environ.get("PASSWORD")
 
 today = dt.datetime.now()
 today_month = today.month
